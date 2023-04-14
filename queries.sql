@@ -16,7 +16,7 @@ ON assignments.enclosure_id = enclosures.id
 WHERE enclosures.name = 'Reptile House';
 
 -- (3) - The names of staff working in enclosures which are closed for maintenance
-SELECT employees.name FROM employees
+SELECT DISTINCT employees.name FROM employees
 INNER JOIN assignments 
 ON employees.id = assignments.employee_id
 INNER JOIN enclosures
@@ -25,7 +25,7 @@ WHERE enclosures.closed_for_maintenance = TRUE;
 
 -- (4) - The name of the enclosure where the oldest animal lives. 
 -- If there are two animals who are the same age choose the first one alphabetically.
-SElECT enclosureS.name FROM enclosures
+SElECT enclosures.name FROM enclosures
 INNER JOIN animals
 ON enclosures.id = animals.enclosure_id
 ORDER BY animals.age desc, animals.name LIMIT 1;
@@ -58,7 +58,7 @@ ON enclosures.id = animals.enclosure_id
 WHERE animals.name = 'Terry';
 
 
-SELECT animals.name FROM ANIMALS
+SELECT animals.name FROM animals
 INNER JOIN enclosures
 on animals.enclosure_id = enclosures.id
 WHERE enclosures.name = 'Big Cat Field' AND animals.name != 'Terry';
